@@ -16,7 +16,7 @@ class Player
   end
 
   def to_s
-   "I'm #{@name.capitalize} with a health of #{health} and a score of #{score} as of #{time}."
+   "I'm #{@name.capitalize} with a health of #{health} and a score of #{score}"
   end
 
   def blam
@@ -31,23 +31,26 @@ class Player
 end
 
 player1 = Player.new("moe")
-puts player1
-
 player2 = Player.new("larry", 60)
-puts player2
-puts player2.inspect
-
 player3 = Player.new("curly", 125)
-puts player3
-player3.blam
-puts player3
-player3.w00t
-puts player3
+player4 = Player.new("shemp", 90)
 
-player2 = Player.new("larry", 60)
-puts player2.name
-player2.name = "Lawrence"
-puts player2.name
-puts player2.health
-puts player2.score
-puts player2
+players = [player1, player2, player3]
+players.pop
+players.push(player4)
+puts "There are #{players.count} players in the game:"
+
+players.each do |player|
+  puts player
+end
+
+players.each do |player|
+  puts player.health
+end
+
+players.each do |player|
+  player.blam
+  player.w00t
+  player.w00t
+  puts player
+end
