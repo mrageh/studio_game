@@ -39,4 +39,24 @@ describe do
       @player.health.should == 100
     end
   end
+
+  context "is created as a strong player" do
+    before do
+      @player = Player.new("beast", 150)
+    end
+
+    it "is a strong player" do
+      @player.should be_strong
+    end
+  end
+
+  context "is created as a weak player" do
+    before do
+      @player = Player.new("wimp", 100)
+    end
+
+    it "is a weak player" do
+      @player.should_not be_strong
+    end
+  end
 end

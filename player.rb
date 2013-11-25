@@ -11,6 +11,10 @@ class Player
     Time.new.strftime("as of %I:%M:%S")
   end
 
+  def strong?
+    health > 100 ? true : false
+  end
+
   def score
     health + name.length
   end
