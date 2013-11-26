@@ -1,4 +1,4 @@
-require_relative 'player'
+require './player'
 
 describe do
   before do

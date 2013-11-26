@@ -1,4 +1,4 @@
-require_relative 'game'
+require './game'
 
 describe Game do
   before do
