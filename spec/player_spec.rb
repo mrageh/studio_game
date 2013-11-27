@@ -1,4 +1,5 @@
 require './player'
+require './treasure_trove'
 
 describe do
   before do
@@ -11,8 +12,12 @@ describe do
   end
 
   it "has a string representation" do
-    @player.to_s.should == "I\'m Moe with a health of 120 and a score of 123"
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    @player.found_treasure(Treasure.new(:hammer, 50))
+
+    @player.to_s.should == "I'm Moe with a health = 120, points = 100 and score = 220."
   end
+
   it "has health" do
     @player.health.should == 120
   end
@@ -25,17 +30,35 @@ describe do
     @player.w00t.should == 135
   end
 
-  it "has a score" do
-    @player.score.should == 123
+  it "computes a score as the sum of its health and points" do
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    @player.found_treasure(Treasure.new(:hammer, 50))
+
+    @player.score.should == 220
   end
 
+  it "computes points as the sum of all treasure points" do
+    @player.points.should == 0
 
-  context "is created with a default health" do
+    @player.found_treasure(Treasure.new(:hammer, 50))
+
+    @player.points.should == 50
+
+    @player.found_treasure(Treasure.new(:crowbar, 400))
+
+    @player.points.should == 450
+
+    @player.found_treasure(Treasure.new(:hammer, 50))
+
+    @player.points.should == 500
+  end
+
+  context "is created with" do
     before do
       @player = Player.new("moe")
     end
 
-    it "has default health if none is specified" do
+    it "default health if none is specified" do
       @player.health.should == 100
     end
   end
@@ -60,17 +83,17 @@ describe do
     end
   end
 
-  context "in a collection of players" do
-  before do
-    @player1 = Player.new("moe", 100)
-    @player2 = Player.new("larry", 200)
-    @player3 = Player.new("curly", 300)
+  context "a collection of players" do
+    before do
+      @player1 = Player.new("moe", 100)
+      @player2 = Player.new("larry", 200)
+      @player3 = Player.new("curly", 300)
 
-    @players = [@player1, @player2, @player3]
-  end
+      @players = [@player1, @player2, @player3]
+    end
 
-  it "is sorted by decreasing score" do
-    @players.sort.should == [@player3, @player2, @player1]
+    it "are sorted by decreasing score" do
+      @players.sort.should == [@player3, @player2, @player1]
+    end
   end
-end
 end

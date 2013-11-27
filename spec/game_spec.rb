@@ -6,7 +6,7 @@ describe Game do
     $stdout = StringIO.new
     @initial_health = 100
     @player = Player.new('moe', @initial_health)
-
+    @player1 = Player.new("larry", @initial_health)
     @game.add_player(@player)
   end
 
@@ -26,6 +26,20 @@ describe Game do
     Die.any_instance.stub(:roll).and_return(1)
     @game.play(2)
     @player.health.should == @initial_health - 20
+  end
+
+  it "assigns a treasure for point during a player's turn" do
+    @game.add_player(@player)
+    @game.play(1)
+    @player.points.should_not be_zero
+  end
+
+  it "computes total points as the sum of all player points" do
+    @game.add_player(@player1)
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    @player1.found_treasure(Treasure.new(:crowbar, 400))
+    @game.total_points.should == 500
   end
 
   context "player stats" do

@@ -36,12 +36,22 @@ class Game
     puts "#{player.name} (#{player.health})"
   end
 
+  def total_points
+    @players.reduce(0) {|sum, player| sum + player.points}
+  end
+
   def print_stats
     strong, weak = @players.partition do |player|
       player.strong?
     end
 
     puts "\n#{title} Statistics:"
+
+    @players.each do |player|
+      puts "\n#{player.name}'s point totals:"
+      puts "#{player.points} grand total points"
+    end
+
 
     puts "\n#{strong.count} strong players:"
     strong.each do |player|
