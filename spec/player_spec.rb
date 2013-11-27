@@ -22,6 +22,13 @@ describe do
     @player.health.should == 120
   end
 
+  it "can be created from a CSV string" do
+    player = Player.from_csv("larry,150")
+
+    player.name.should == "Larry"
+    player.health.should == 150
+  end
+
   it "can be attacked with blam" do
     @player.blam.should == 110
   end
