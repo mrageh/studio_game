@@ -15,10 +15,10 @@ knuckleheads.add_player(player3)
 knuckleheads.play(2)
 knuckleheads.print_stats
 
-chipmunks = Game.new("chipmunks")
-chipmunks.add_player(player1)
-chipmunks.add_player(player4)
-chipmunks.add_player(player5)
-chipmunks.add_player(player6)
-chipmunks.play(3)
-chipmunks.print_stats
+# chipmunks = Game.new("chipmunks")
+# chipmunks.add_player(player1)
+# chipmunks.add_player(player4)
+# chipmunks.add_player(player5)
+# chipmunks.add_player(player6)
+# chipmunks.play(3)
+# chipmunks.print_stats
