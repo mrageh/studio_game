@@ -32,6 +32,11 @@ class Player
     puts "#{name} got w00ted!"
     @health += 15
   end
+
+  def <=> (other_player)
+    other_player.score <=> score
+  end
+
 end
 
 #basic example usage of class

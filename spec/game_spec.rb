@@ -12,19 +12,33 @@ describe Game do
 
   it "the health increases if a high number is rolled" do
     Die.any_instance.stub(:roll).and_return(5)
-    @game.play
-    @player.health.should == @initial_health + 15
+    @game.play(2)
+    @player.health.should == @initial_health + 30
   end
 
   it "the health stays the same if a medium number is rolled" do
     Die.any_instance.stub(:roll).and_return(3)
-    @game.play
+    @game.play(5)
     @player.health.should == @initial_health
   end
 
   it "the health decreases if a low number is rolled" do
     Die.any_instance.stub(:roll).and_return(1)
-    @game.play
-    @player.health.should == @initial_health - 10
+    @game.play(2)
+    @player.health.should == @initial_health - 20
+  end
+
+  context "player stats" do
+    before do
+      @initial_health = 120
+      @player = Player.new('moe', @initial_health)
+      @player2 = Player.new('dan', 90)
+    end
+
+    it "should print as a strong player" do
+      Die.any_instance.stub(:roll).and_return(3)
+      @game.play(1)
+      #how do I test local variables in method?
+    end
   end
 end
